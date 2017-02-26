@@ -1,0 +1,43 @@
+npm install webpack -g
+//安装webpack
+
+var path = require('path');
+module.exports = {
+  entry: "./es6/main.js",
+  output: {
+    path: __dirname,
+    filename: "bundle.js"
+  },
+  module: {
+    loaders: [
+      {
+        test: path.join(__dirname, 'es6'),
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        }
+      }
+    ]
+  }
+}
+//创建 webpack.config.js,按照上面的配置
+//entry 是入口文件
+//output 是输出文件，这里的 filename 给的是 bundle.js，也就是当 webpack 运行完之后将生成一个 bundle.js 文件
+//loaders 是使用到的所有加载器，在 gulp 里面我们都是使用的是 gulp 的一些插件比如 gulp-rename、gulp-concat 等等，在 webpack 里面类似，使用的是各种 loaders，详细的 loaders 列表在 这里 。
+
+npm install babel-loader --save-dev
+//安装 babel-loader
+npm install babel-preset-es2015 --save-dev
+//安装转码规则
+
+//因为有 webpack.config.js 配置文件，所以只需要输入 webpack 就能运行， webpack 会自动去执行配置文件的内容：
+webpack
+//对于大型项目，可能 webpack 会运行很久，所以可以添加一个进度条便于查看：
+webpack --progress --colors
+//在 gulp 里，使用 watch 可以监视文件的变化，而在 webpack 里，只需加一个参数：
+webpack --watch
+//所以，我们可以使用下面的命令运行：
+webpack --progress --colors --watch
+
+//oK 到这里还有一个重要东西还没配置进去,那就是babel-core
+npm install babel-core --save-dev 
