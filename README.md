@@ -1,1 +1,2 @@
-# Webpack-React-Es6
+# Webpack-React-Es6 
+##先了解下Webpack + Es6
