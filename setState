@@ -1,0 +1,29 @@
+//this.setState()不能直接通过this.state来进行对state里的数据操作，因为它有一定的反应时间；
+//要想对this.state的数据进行修改，应该像以下这么做：
+  this.setState((prevState,props)=>{
+  count:prevState.count+1
+  })
+//this.setState()可以传函数：
+  function Mulitiple(multiple){
+  return function update(state){
+  return{
+  value:state.value*multiple
+  }
+  }
+  }
+  class Contaniner extends React.Compoent{
+  state={
+  value:10
+  }
+  handMultiple = () => {
+  this.setState(Mulitiple(5))
+  }
+  render(){
+  return(
+  <div>
+  <button onClick={this.handMultiple}>点击</button>
+  </div>
+  )
+  }
+  }
+
